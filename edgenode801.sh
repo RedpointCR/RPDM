@@ -5,14 +5,14 @@ CLUSTER_NAME=$1
 CLUSTER_STORAGE_ACCOUNT=$2
 
 CONTAINER=https://rpdm.blob.core.windows.net/installers
-RPDM_VERSION=8.0.1.29480
+RPDM_VERSION=8.1.1.29784
 RPDM_INSTALLER=RedPointDM-Server-$RPDM_VERSION-for-Ubuntu14.tgz
 RPDM_WORKING_DIR=/mnt/rpdm
 RPDM_INSTALLER_DIR=$RPDM_WORKING_DIR/RPDM_Server
 RPDM_HOME=/opt/RedPointDM8
 RPDM_CONF=/etc/redpointdm8.conf
 
-RPDM_JARFILE=$RPDM_HOME/java/rpdmsdk-8.0.1-SNAPSHOT-shaded.jar
+RPDM_JARFILE=$RPDM_HOME/java/rpdmsdk-8.1.0-SNAPSHOT-shaded.jar
 RPDM_SAMPLES=RedPointDM_Hadoop_Samples.tgz
 RPDM_SAMPLES_URL=$CONTAINER/$RPDM_SAMPLES
 RPDM_FIRSTRUN=/var/lock/rpdm-firstrun
@@ -90,11 +90,14 @@ cat > /tmp/hadoop.xml <<EOF
   <m checkin_note="" checkin_user="Administrator" datalever_version="$version" deleted="N" description="" group="Administrator" locked_by="" name="Hadoop" object_id="14" object_key="14" object_perms="223" path_id="7" subtype="HADOOP_SETTINGS" timestamp="1" type="SETTINGS" user="Administrator" vault_file_size="-1">
     <m k="settings" current_cluster="hdi" hdfs_mismatch_action="connect">
       <l k="clusters">
-        <m hdfs_tempFolder="hdfs://mycluster/tmp" jvm_memory_mb="200" name="hdi" open_merge_file_limit="50" override_hadoop_user="0" project_trace_level="3" server_module_path="wasb://$CLUSTER_NAME@$CLUSTER_STORAGE_ACCOUNT.blob.core.windows.net/rpdm/$RPDM_INSTALLER" use_classpath_env="0" use_jvm_path="0" vendor="hortonworks">
+        <m hdfs_tempFolder="hdfs://mycluster/tmp" jvm_memory_mb="200" name="hdi" open_merge_file_limit="50" override_hadoop_user="0" project_trace_level="3" server_module_path="wasb://$CLUSTER_NAME@$CLUSTER_STORAGE_ACCOUNT.blob.core.windows.net/rpdm/$RPDM_INSTALLER" use_classpath_env="0" use_jvm_path="0" vendor="azure">
           <m k="partition_task_defaults" enable_task_retry="0" task_headroom_mb="200" task_memory_mb="2048" task_retry_limit="1" tasks_per_worker="4"/>
           <m k="queue" override="0" queue="default"/>
           <m k="task_defaults" enable_task_retry="0" memory_aggressiveness="50" task_headroom_mb="200" task_memory_mb="2048" task_retry_limit="1" tasks_per_worker="4"/>
-        </m>
+          <l k="azure_dl_stores">
+            <m name="rpdmadl" />
+          </l>	
+	</m>
       </l>
     </m>
   </m>
