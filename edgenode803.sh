@@ -4,7 +4,7 @@
 +CLUSTER_NAME=$1
 +CLUSTER_STORAGE_ACCOUNT=$2
 +
-+CONTAINER=http://dm-downloads.redpointglobal.com/
++CONTAINER=http://dm-downloads.redpointglobal.com
 +RPDM_VERSION=8.0.3.29805
 +RPDM_INSTALLER=RedPointDM-Server-$RPDM_VERSION-for-Ubuntu14.tgz
 +RPDM_WORKING_DIR=/mnt/rpdm
