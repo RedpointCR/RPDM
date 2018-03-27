@@ -4,6 +4,7 @@
 CLUSTER_NAME=$1
 CLUSTER_STORAGE_ACCOUNT=$2
 
+CONTAINER2=https://rpdm.blob.core.windows.net/installers
 CONTAINER=http://dm-downloads.redpointglobal.com
 RPDM_VERSION=8.0.3.29805
 RPDM_INSTALLER=RedPointDM-Server-$RPDM_VERSION-for-Ubuntu14.tgz
@@ -12,9 +13,9 @@ RPDM_INSTALLER_DIR=$RPDM_WORKING_DIR/RPDM_Server
 RPDM_HOME=/opt/RedPointDM8
 RPDM_CONF=/etc/redpointdm8.conf
 
-RPDM_JARFILE=$RPDM_HOME/java/rpdmsdk-8.0.1-SNAPSHOT-shaded.jar
+RPDM_JARFILE=$RPDM_HOME/java/rpdmsdk-8.0.3-RC4-shaded.jar
 RPDM_SAMPLES=RedPointDM_Hadoop_Samples.tgz
-RPDM_SAMPLES_URL=$CONTAINER/$RPDM_SAMPLES
+RPDM_SAMPLES_URL=$CONTAINER2/$RPDM_SAMPLES
 RPDM_FIRSTRUN=/var/lock/rpdm-firstrun
 RPDM_SHELL=$RPDM_HOME/program/rpdm_shell
 
@@ -125,7 +126,7 @@ echo "Done configuring RPDM temp spaces."
 cd $RPDM_WORKING_DIR
 if [ ! -d samples ]; then
 	echo -n "Downloading samples..."
-	sudo wget $CONTAINER/$RPDM_SAMPLES
+	sudo wget $CONTAINER2/$RPDM_SAMPLES
 	echo " done."
 fi
 if [ ! -d $RPDM_SAMPLES ]; then
